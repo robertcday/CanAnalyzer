@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>CAN Analyzer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        th,
+        td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background: #f4f4f4;
+        }
+
+        #controls {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="controls">
+        <label for="port-select">Serial Port:</label>
+        <select id="port-select"></select>
+        <select id="baudrate-select">
+            <option value="9600">9600</option>
+            <option value="19200">19200</option>
+            <option value="38400">38400</option>
+            <option value="57600">57600</option>
+            <option value="115200">115200</option>
+            <option value="250000" selected>250000</option>
+        </select>
+        <button id="refresh-btn">Refresh List</button>
+        <button id="start-btn">Start</button>
+        <button id="stop-btn">Stop</button>
+    </div>
+    <table id="data-table">
+        <thead>
+            <tr>
+                <th>Timestamp</th>
+                <th>ID</th>
+                <th>RTR</th>
+                <th>IDE</th>
+                <th>DLC</th>
+                <th>D0</th>
+                <th>D1</th>
+                <th>D2</th>
+                <th>D3</th>
+                <th>D4</th>
+                <th>D5</th>
+                <th>D6</th>
+                <th>D7</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+    <script src="renderer.js"></script>
+</body>
+
+</html>
