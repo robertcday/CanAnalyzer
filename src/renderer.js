@@ -44,8 +44,18 @@ ipcRenderer.on('refresh-ports', (event, portsStr) => {
 });
 
 ipcRenderer.on('serial-data', (event, line) => {
-  const now = new Date().toLocaleTimeString();
-  const row = dataTable.insertRow(0);
-  row.insertCell(0).textContent = now;
-  row.insertCell(1).textContent = line.trim();
+    const now = new Date().toLocaleTimeString();
+    const row = dataTable.insertRow(0);
+    row.insertCell(0).textContent = now;
+    const dataArray = line.split(',');
+    for(let i = 0; i < Math.min(dataArray.length, 3); i++) {
+        row.insertCell(i + 1).textContent = dataArray[i].trim();
+    }
+    if (dataArray.length > 3) {
+        // break out the D0-D7 values into separate cells
+      for (let i = 0; i < dataArray[3].length; i += 2) {
+        const chunk = dataArray[3].substr(i, 2);
+        row.insertCell(row.cells.length).textContent = chunk;
+      }
+    }
 });
